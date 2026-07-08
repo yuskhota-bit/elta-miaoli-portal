@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELTA Lesson Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#FAF8F3;--bg-s:#EFECE3;--fg:#2D2A26;--m:#8A8578;--p:#2C5F4A;--pl:#E6F0EB;--pd:#1E4234;--a:#D4882C;--al:#FDF3E2;--c:#FFF;--b:#E2DDD3;--d:#C0392B;--ok:#27AE60;--w:#E67E22}
+*{box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);margin:0;min-height:100vh}
+h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 10%,rgba(44,95,74,.04) 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,rgba(212,136,44,.04) 0%,transparent 55%);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}
+.top-bar{position:sticky;top:0;z-index:100;background:rgba(250,248,243,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--b);padding:0 20px}
+.nt{padding:6px 13px;border-radius:20px;font-size:13px;font-weight:500;white-space:nowrap;transition:all .25s;cursor:pointer;color:var(--m);background:0;border:0;font-family:inherit}
+.nt:hover{color:var(--fg);background:var(--bg-s)}
+.nt.on{color:#fff;background:var(--p)}
+.nw{overflow-x:auto;scrollbar-width:none}.nw::-webkit-scrollbar{display:none}
+.mt{display:flex;background:var(--bg-s);border-radius:8px;padding:2px;gap:2px;flex-shrink:0}
+.mb{padding:5px 12px;border:0;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;background:0;color:var(--m);font-family:inherit;transition:all .2s}
+.mb.on{background:var(--p);color:#fff}
+.sc{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:28px;margin-bottom:20px;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.sc.v{opacity:1;transform:translateY(0)}
+.fi{width:100%;padding:10px 14px;border:1.5px solid var(--b);border-radius:10px;font-family:inherit;font-size:14px;color:var(--fg);background:var(--bg);transition:border-color .2s,box-shadow .2s;outline:0}
+.fi:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(44,95,74,.1)}
+.fi::placeholder{color:var(--m);opacity:.55}
+textarea.fi{resize:vertical;min-height:72px;line-height:1.6}
+select.fi{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A8578' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
+.fl{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin-bottom:6px}
+.zh{display:block;font-size:10px;font-weight:500;text-transform:none;letter-spacing:.02em;color:var(--a);margin-top:-3px;margin-bottom:4px}
+.sz{font-size:14px;color:var(--m);font-weight:400;margin-left:8px}
+.sp{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:500;border:1.5px solid var(--b);background:var(--bg);color:var(--m);cursor:pointer;transition:all .25s;user-select:none;font-family:inherit}
+.sp:hover{border-color:var(--p);color:var(--p);background:var(--pl)}
+.sp.on{border-color:var(--p);background:var(--p);color:#fff;transform:scale(1.03);box-shadow:0 3px 10px rgba(44,95,74,.25)}
+.sp .rx{display:none;width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.25);border:0;color:#fff;font-size:9px;cursor:pointer;align-items:center;justify-content:center;padding:0;line-height:1;margin-left:2px;flex-shrink:0}
+.sp.on .rx{display:inline-flex}.sp .rx:hover{background:rgba(255,255,255,.5)}
+.ch{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--a);margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+.ch:first-child{margin-top:0}
+.cr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.ai{display:inline-flex;align-items:center;gap:0;margin-left:4px}
+.ai input{width:120px;padding:7px 10px;border:1.5px dashed var(--b);border-radius:10px 0 0 10px;font-size:13px;font-family:inherit;color:var(--fg);background:var(--bg);outline:0;transition:border-color .2s}
+.ai input:focus{border-color:var(--p);border-style:solid}
+.ai input::placeholder{color:var(--m);opacity:.5;font-size:12px}
+.ai button{padding:7px 10px;border:1.5px dashed var(--b);border-left:0;border-radius:0 10px 10px 0;background:var(--bg-s);color:var(--m);cursor:pointer;font-size:12px;transition:all .2s}
+.ai button:hover{background:var(--pl);color:var(--p);border-color:var(--p)}
+.su{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:10px;font-size:13px;font-weight:500;border:1.5px solid var(--b);background:var(--bg);color:var(--m);cursor:pointer;transition:all .25s;user-select:none;font-family:inherit}
+.su:hover{border-color:var(--p);color:var(--p);background:var(--pl)}
+.su.on{border-color:var(--p);background:var(--p);color:#fff;box-shadow:0 3px 10px rgba(44,95,74,.25)}
+.su .sz2{font-size:10px;opacity:.7}
+.pr{background:var(--bg);border:1.5px solid var(--b);border-radius:12px;padding:20px;margin-bottom:12px;transition:border-color .2s,box-shadow .2s}
+.pr:hover{border-color:rgba(44,95,74,.3);box-shadow:0 2px 14px rgba(0,0,0,.04)}
+.sn{width:28px;height:28px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.sn-a{background:var(--a)}
+.db{width:28px;height:28px;border-radius:50%;border:0;background:0;color:var(--m);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:13px}
+.db:hover{background:#FDEAEA;color:var(--d)}
+.gt{width:100%;height:14px;background:var(--bg-s);border-radius:7px;overflow:hidden}
+.gf{height:100%;border-radius:7px;transition:width .6s cubic-bezier(.4,0,.2,1),background .4s}
+.bp{padding:10px 20px;background:var(--p);color:#fff;border:0;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.bp:hover{background:var(--pd);transform:translateY(-1px);box-shadow:0 4px 14px rgba(44,95,74,.3)}
+.bs2{padding:10px 20px;background:var(--bg);color:var(--fg);border:1.5px solid var(--b);border-radius:10px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.bs2:hover{border-color:var(--p);color:var(--p)}
+.bg{padding:8px 14px;background:0;color:var(--m);border:1.5px dashed var(--b);border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;width:100%;justify-content:center}
+.bg:hover{border-color:var(--p);color:var(--p);background:var(--pl)}
+.tb{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.tt{padding:14px 20px;border-radius:12px;font-size:14px;font-weight:500;color:#fff;box-shadow:0 8px 28px rgba(0,0,0,.18);transform:translateX(140%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:10px;pointer-events:auto}
+.tt.sh{transform:translateX(0)}
+.tt.ok{background:var(--ok)}.tt.er{background:var(--d)}.tt.in{background:var(--p)}
+.bg2{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--pl);color:var(--p);font-size:14px;font-weight:700;flex-shrink:0}
+.ti{width:62px;padding:8px 6px;text-align:center;font-weight:600}
+.mch{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--m);margin:16px 0 6px;display:flex;align-items:center;gap:6px}
+.mch:first-child{margin-top:0}
+.cp{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;display:inline-block}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)}
+.mo.op{display:flex}
+.mx{background:var(--c);border-radius:16px;width:100%;max-width:680px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:mi .3s ease}
+@keyframes mi{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mb2{padding:24px;overflow-y:auto;flex:1}
+.mb2 pre{font-family:inherit;font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-word;color:var(--fg)}
+.so{display:block}.si{display:none}
+body.ms .so{display:none!important}body.ms .si{display:block!important}body.md .si{display:none!important}body.md .so{display:block!important}
+@media print{.np{display:none!important}body{background:#fff}body::before{display:none}.sc{break-inside:avoid;border:1px solid #ccc;box-shadow:none;opacity:1;transform:none;margin-bottom:14px;padding:16px}.fi{border:0;border-bottom:1px solid #bbb;border-radius:0;padding:4px 0;background:0}.sp,.su{border:1px solid #999;padding:4px 8px;font-size:11px}.sp.on,.su.on{background:#333!important}.pr{border:1px solid #ccc}.ai{display:none!important}.sp .rx{display:none!important}.mt{display:none!important}body.ms .si{display:block!important}}
+@media(max-width:768px){.sc{padding:20px;border-radius:12px}.ai input{width:90px}}
+@media(prefers-reduced-motion:reduce){.sc,.sp,.su,.tt,.gf{transition:none}.sc{opacity:1;transform:none}}
+</style>
+</head>
+<body class="md">
+
+<header class="top-bar np">
+<div class="max-w-5xl mx-auto flex items-center gap-3 py-3">
+    <div class="flex items-center gap-3 flex-shrink-0">
+        <div style="width:34px;height:34px;border-radius:10px;background:var(--p);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-book-open text-white text-sm"></i></div>
+        <div class="hidden sm:block"><div style="font-family:'DM Serif Display',serif;font-size:16px;line-height:1.1;color:var(--p)">ELTA Lesson Plan <span class="sz" style="font-size:12px">教學計畫</span></div><div style="font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--a);text-transform:uppercase">Taiwan 2026</div></div>
+    </div>
+    <div class="mt" id="modeT"><button class="mb on" data-m="standard" onclick="setMode('standard')">Standard</button><button class="mb" data-m="simplified" onclick="setMode('simplified')">Simplified</button></div>
+    <nav class="nw flex-1 flex items-center gap-1 ml-2" id="navT"></nav>
+    <div class="flex items-center gap-2 flex-shrink-0">
+        <button class="bs2" style="padding:8px 12px;font-size:12px" onclick="saveDraft()" title="Ctrl+S"><i class="fa-solid fa-floppy-disk"></i><span class="hidden md:inline">Save</span></button>
+        <button class="bs2" style="padding:8px 12px;font-size:12px" onclick="openExp()"><i class="fa-solid fa-file-export"></i><span class="hidden md:inline">Export</span></button>
+        <button class="bp" style="padding:8px 12px;font-size:12px" onclick="window.print()"><i class="fa-solid fa-print"></i><span class="hidden md:inline">Print</span></button>
+    </div>
+</div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 relative" style="z-index:1">
+
+<section class="sc" id="s-info">
+<div class="flex items-center mb-6"><span class="bg2">1</span><h2 class="text-xl" style="color:var(--p)">Lesson Information <span class="sz">課程資訊</span></h2></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+    <div><label class="fl">ELTA Name<span class="zh">教師姓名</span></label><input class="fi" data-f="teacherName" placeholder="e.g. Sarah Johnson"></div>
+    <div><label class="fl">Local Teacher<span class="zh">本地教師</span></label><input class="fi" data-f="coTeacher" placeholder="e.g. Lin Mei-hua"></div>
+    <div><label class="fl">School Name<span class="zh">學校名稱</span></label><input class="fi" data-f="school" placeholder="e.g. Jiaopu ES"></div>
+    <div><label class="fl">Grade Level<span class="zh">年級</span></label><select class="fi" data-f="grade"><option value="">Select</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option></select></div>
+</div>
+<div class="mb-4"><label class="fl">Subject<span class="zh">領域</span></label><div class="cr" id="subPills"></div></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+    <div><label class="fl">No. of Students<span class="zh">學生人數</span></label><input class="fi" type="number" min="1" max="60" data-f="numStudents" placeholder="e.g. 28"></div>
+    <div><label class="fl">Date<span class="zh">日期</span></label><input class="fi" type="date" data-f="date"></div>
+    <div><label class="fl">Period<span class="zh">節次</span></label><input class="fi" data-f="period" placeholder="e.g. 2nd"></div>
+    <div><label class="fl">Sessions<span class="zh">總節數</span></label><input class="fi" type="number" min="1" max="20" data-f="sessions" placeholder="e.g. 1"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div><label class="fl">Topic<span class="zh">單元主題</span></label><input class="fi" data-f="topic" placeholder="e.g. Weather"></div>
+    <div><label class="fl">Unit / Chapter<span class="zh">單元章節</span></label><input class="fi" data-f="unit" placeholder="e.g. Book 5 Unit 3"></div>
+    <div><label class="fl">Textbook / Pages<span class="zh">教科書頁碼</span></label><input class="fi" data-f="textbook" placeholder="e.g. pp. 42-45"></div>
+</div>
+</section>
+
+<section class="sc" id="s-obj">
+<div class="flex items-center mb-6"><span class="bg2">2</span><h2 class="text-xl" style="color:var(--p)">Learning Objectives <span class="sz">學習目標</span></h2></div>
+<div class="so">
+    <div style="background:var(--pl);border-radius:12px;padding:16px;border-left:4px solid var(--p);margin-bottom:20px">
+        <label class="fl" style="color:var(--p)">SWBAT... <span class="zh" style="color:var(--pd)">學生將能夠...</span></label>
+        <textarea class="fi" data-f="obj1" rows="2" placeholder="1. e.g. Ask and answer about weather using 4 adjectives." style="background:var(--c);border-color:rgba(44,95,74,.2)"></textarea>
+        <textarea class="fi" data-f="obj2" rows="2" placeholder="2." style="background:var(--c);border-color:rgba(44,95,74,.2);margin-top:8px"></textarea>
+        <textarea class="fi" data-f="obj3" rows="2" placeholder="3. (optional)" style="background:var(--c);border-color:rgba(44,95,74,.2);margin-top:8px"></textarea>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="fl">Target Vocabulary<span class="zh">目標字彙</span></label><textarea class="fi" data-f="vocab" rows="3" placeholder="e.g. sunny, rainy, cloudy, windy"></textarea></div>
+        <div><label class="fl">Target Grammar<span class="zh">目標句型</span></label><textarea class="fi" data-f="grammar" rows="3" placeholder="e.g. How's the weather? It's [adj]."></textarea></div>
+    </div>
+</div>
+<div class="si">
+    <div style="background:var(--al);border-radius:12px;padding:16px;border-left:4px solid var(--a);margin-bottom:16px">
+        <label class="fl" style="color:var(--a)">What will students learn today?<span class="zh">今天學生會學到什麼？</span></label>
+        <textarea class="fi" data-f="simpObj" rows="3" placeholder="e.g. Students will learn 5 weather words and ask/answer about the weather." style="background:var(--c);border-color:rgba(212,136,44,.2)"></textarea>
+    </div>
+    <label class="fl">Key Sentences / Words to Practice<span class="zh">練習的重點句型和單字</span></label>
+    <textarea class="fi" data-f="simpKeys" rows="4" placeholder="e.g.&#10;- How's the weather? It's sunny.&#10;Words: sunny, rainy, cloudy, windy, snowy"></textarea>
+</div>
+</section>
+
+<section class="sc so" id="s-strat">
+<div class="flex items-center mb-2"><span class="bg2">3</span><h2 class="text-xl" style="color:var(--p)">Instructional Strategy Menu <span class="sz">教學策略選單</span></h2></div>
+<p style="font-size:13px;color:var(--m);margin-bottom:4px;margin-left:44px">Select strategies you plan to use.</p>
+<div style="margin-left:44px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:8px"><span class="cp" style="background:var(--pl);color:var(--p)">Selected: <span id="stCt">0</span></span></div>
+<div id="stratGrid"></div>
+</section>
+
+<section class="sc" id="s-mat">
+<div class="flex items-center mb-2"><span class="bg2" id="matB">4</span><h2 class="text-xl" style="color:var(--p)">Teaching Aids & Resources <span class="sz">教學資源與設備</span></h2></div>
+<p style="font-size:13px;color:var(--m);margin-bottom:4px;margin-left:44px">Select from common materials or add your own.</p>
+<div style="margin-left:44px;margin-bottom:12px"><span class="cp" style="background:var(--pl);color:var(--p)">Selected: <span id="matCt">0</span></span></div>
+<div id="matGrid"></div>
+<div style="margin-top:12px"><label class="fl">Additional Notes<span class="zh">備註</span></label><textarea class="fi" data-f="matNotes" rows="2" placeholder="e.g. Print 30 exit tickets"></textarea></div>
+</section>
+
+<section class="sc" id="s-proc">
+<div class="flex items-center mb-2"><span class="bg2" id="procB">5</span><h2 class="text-xl" style="color:var(--p)"><span id="procT">Lesson Procedure</span> <span class="sz">教學流程</span></h2></div>
+<div class="so" id="stdPW">
+    <p style="font-size:13px;color:var(--m);margin-bottom:12px;margin-left:44px">Separate Teacher Input from Student Output to ensure high STT.</p>
+    <div style="background:var(--bg);border-radius:12px;padding:14px 18px;margin-bottom:20px;border:1px solid var(--b)">
+        <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><i class="fa-solid fa-microphone" style="color:var(--p);font-size:14px"></i><span style="font-size:13px;font-weight:600">Student Talk Time</span></div><span id="sttL" style="font-size:22px;font-weight:700;color:var(--m);font-family:'DM Serif Display',serif">0%</span></div>
+        <div class="gt"><div class="gf" id="sttF" style="width:0%;background:var(--d)"></div></div>
+    </div>
+    <div id="procList"></div>
+    <button class="bg" onclick="addProc()" style="margin-top:8px"><i class="fa-solid fa-plus"></i> Add Stage</button>
+</div>
+<div class="si" id="simpPW">
+    <p style="font-size:13px;color:var(--m);margin-bottom:12px;margin-left:44px">List each activity or game in your lesson.</p>
+    <div id="actList"></div>
+    <button class="bg" onclick="addAct()" style="margin-top:8px"><i class="fa-solid fa-plus"></i> Add Activity</button>
+</div>
+</section>
+
+<section class="sc" id="s-hw">
+<div class="flex items-center mb-6"><span class="bg2" id="hwB">6</span><h2 class="text-xl" style="color:var(--p)">Homework / Review <span class="sz">作業與複習</span></h2></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><label class="fl">Homework<span class="zh">作業</span></label><textarea class="fi" data-f="homework" rows="3" placeholder="e.g. Draw a weather scene and label it"></textarea></div>
+    <div><label class="fl">Next Lesson<span class="zh">銜接下節課</span></label><textarea class="fi" data-f="transition" rows="3" placeholder="e.g. Next: clothing vocabulary"></textarea></div>
+</div>
+</section>
+
+<section class="sc" id="s-ref">
+<div class="flex items-center mb-2"><span class="bg2" id="refB">7</span><h2 class="text-xl" style="color:var(--p)">Post-Lesson Reflection <span class="sz">課後反思</span></h2></div>
+<div class="so">
+    <p style="font-size:13px;color:var(--m);margin-bottom:16px;margin-left:44px">Complete after teaching.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div style="background:var(--bg);border-radius:12px;padding:16px;text-align:center;border:1px solid var(--b)"><label class="fl">Actual STT %<span class="zh">實際學生發話</span></label><input class="fi ti" type="number" min="0" max="100" data-f="actualSTT" placeholder="%" style="width:100%;font-size:24px;margin-top:4px"></div>
+        <div style="background:var(--bg);border-radius:12px;padding:16px;text-align:center;border:1px solid var(--b)"><label class="fl">L1 Use<span class="zh">母語使用</span></label><select class="fi" data-f="l1Use" style="margin-top:4px"><option value="">Select...</option><option>None</option><option>Minimal</option><option>Moderate</option><option>Heavy</option></select></div>
+        <div style="background:var(--bg);border-radius:12px;padding:16px;text-align:center;border:1px solid var(--b)"><label class="fl">Rating<span class="zh">評分</span></label><select class="fi" data-f="rating" style="margin-top:4px"><option value="">Rate...</option><option>5 - Exceeded</option><option>4 - Met all</option><option>3 - Partially met</option><option>2 - Struggled</option><option>1 - Redesign needed</option></select></div>
+    </div>
+    <div class="mb-4"><label class="fl">What Worked<span class="zh">表現良好</span></label><textarea class="fi" data-f="workedWell" rows="3" placeholder="e.g. Info gap activity worked well"></textarea></div>
+    <div class="mb-4"><label class="fl">What to Change<span class="zh">改進之處</span></label><textarea class="fi" data-f="needsAdj" rows="3" placeholder="e.g. Too long on presentation"></textarea></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="fl">Notes for Local Teacher<span class="zh">給本地教師</span></label><textarea class="fi" data-f="ltNotes" rows="2" placeholder="e.g. Support Group B next time"></textarea></div>
+        <div><label class="fl">Follow-Up<span class="zh">後續行動</span></label><textarea class="fi" data-f="followUp" rows="2" placeholder="e.g. Review vocab next lesson"></textarea></div>
+    </div>
+</div>
+<div class="si">
+    <p style="font-size:13px;color:var(--m);margin-bottom:16px;margin-left:44px">Fill in after your class.</p>
+    <div style="background:var(--bg);border-radius:12px;padding:16px;text-align:center;border:1px solid var(--b);margin-bottom:16px;max-width:300px">
+        <label class="fl">How did it go?<span class="zh">進行得如何？</span></label>
+        <select class="fi" data-f="simpRate" style="margin-top:4px"><option value="">Rate...</option><option>5 - Great!</option><option>4 - Good</option><option>3 - Okay</option><option>2 - Difficult</option><option>1 - Did not work</option></select>
+    </div>
+    <div class="mb-4"><label class="fl">How did it go? What worked or didn't?<span class="zh">什麼有效或無效？</span></label><textarea class="fi" data-f="simpRef" rows="4" placeholder="e.g. Flashcard game went well. Worksheet was too hard."></textarea></div>
+    <div><label class="fl">Notes for Local Teacher<span class="zh">給本地教師</span></label><textarea class="fi" data-f="simpLTN" rows="2" placeholder="e.g. Can you help with classroom management during the game?"></textarea></div>
+</div>
+</section>
+
+<div class="np flex flex-wrap items-center justify-center gap-3 py-6">
+    <button class="bs2" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+    <button class="bp" onclick="saveDraft()"><i class="fa-solid fa-floppy-disk"></i> Save Draft</button>
+    <button class="bp" style="background:var(--a)" onclick="openExp()"><i class="fa-solid fa-file-export"></i> Export</button>
+</div>
+</main>
+
+<div class="tb" id="toastBox"></div>
+<div class="mo" id="expModal" onclick="if(event.target===this)closeExp()"><div class="mx"><div style="padding:20px 24px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between"><h3 style="font-size:18px;color:var(--p)">Export Lesson Plan</h3><button onclick="closeExp()" style="background:0;border:0;cursor:pointer;color:var(--m);font-size:18px;padding:4px"><i class="fa-solid fa-xmark"></i></button></div><div class="mb2"><pre id="expCon"></pre></div><div style="padding:16px 24px;border-top:1px solid var(--b);display:flex;justify-content:flex-end;gap:8px"><button class="bs2" onclick="closeExp()">Close</button><button class="bp" onclick="copyExp()"><i class="fa-solid fa-copy"></i> Copy</button></div></div></div>
+
+<script>
+function E(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function A(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function I(s){if(!s)return'_';return String(s).replace(/[^a-zA-Z0-9]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}
+
+var mode='standard';
+var SUBS=[{id:'english',n:'English Language',z:'英語文'},{id:'math',n:'Mathematics',z:'數學'},{id:'science',n:'Science',z:'自然科學'},{id:'social',n:'Social Studies',z:'社會'},{id:'arts',n:'Arts',z:'藝術'},{id:'pe',n:'Physical Education',z:'體育'},{id:'health',n:'Health',z:'健康與體育'},{id:'music',n:'Music',z:'音樂'},{id:'tech',n:'Technology',z:'科技'}];
+
+var STRATS=[
+{id:'icq',n:'ICQs',i:'fa-circle-question',c:'Instructional Clarity & Scaffolding'},
+{id:'iwu',n:'I-We-You Model',i:'fa-stairs',c:'Instructional Clarity & Scaffolding'},
+{id:'vi',n:'Visual Instructions',i:'fa-list-check',c:'Instructional Clarity & Scaffolding'},
+{id:'ccq',n:'CCQs',i:'fa-magnifying-glass',c:'Instructional Clarity & Scaffolding'},
+{id:'tps',n:'Think-Pair-Share',i:'fa-brain',c:'Student Talk Time & Interaction'},
+{id:'pair',n:'Pair Work',i:'fa-user-group',c:'Student Talk Time & Interaction'},
+{id:'grp',n:'Group Work',i:'fa-people-group',c:'Student Talk Time & Interaction'},
+{id:'ig',n:'Information Gap',i:'fa-puzzle-piece',c:'Student Talk Time & Interaction'},
+{id:'pl',n:'Student-Led Demo',i:'fa-person-chalkboard',c:'Student Talk Time & Interaction'},
+{id:'tpr',n:'TPR',i:'fa-person-running',c:'L1/L2 Balance & Comprehensible Input'},
+{id:'ww',n:'Word Wall / Starters',i:'fa-font',c:'L1/L2 Balance & Comprehensible Input'},
+{id:'re',n:'Routine English',i:'fa-rotate',c:'L1/L2 Balance & Comprehensible Input'},
+{id:'ge',n:'Gesture / Cuing',i:'fa-hand',c:'L1/L2 Balance & Comprehensible Input'},
+{id:'rv',n:'Realia / Visuals',i:'fa-image',c:'L1/L2 Balance & Comprehensible Input'},
+{id:'et',n:'Exit Ticket',i:'fa-ticket',c:'Formative Assessment & Closure'},
+{id:'th',n:'Thumbs Up/Down',i:'fa-thumbs-up',c:'Formative Assessment & Closure'},
+{id:'tl',n:'Traffic Light Cards',i:'fa-traffic-light',c:'Formative Assessment & Closure'},
+{id:'or',n:'Objective Review',i:'fa-bullseye',c:'Formative Assessment & Closure'},
+{id:'oc',n:'Observation Checklist',i:'fa-clipboard-check',c:'Formative Assessment & Closure'},
+{id:'sb',n:'Show Me Boards',i:'fa-chalkboard',c:'Formative Assessment & Closure'}
+];
+
+var MATS=[
+{id:'fc',n:'Flashcards',c:'Visual Aids',i:'fa-clone'},{id:'sl',n:'Slides / PPT',c:'Visual Aids',i:'fa-display'},
+{id:'wp',n:'Word Wall Poster',c:'Visual Aids',i:'fa-font'},{id:'sf',n:'Sentence Frames',c:'Visual Aids',i:'fa-align-left'},
+{id:'pc',n:'Picture Cards',c:'Visual Aids',i:'fa-images'},{id:'sc2',n:'Success Criteria',c:'Visual Aids',i:'fa-check-double'},
+{id:'rl',n:'Realia',c:'Physical Materials',i:'fa-cube'},{id:'cc',n:'Cue Cards',c:'Physical Materials',i:'fa-id-card'},
+{id:'rp',n:'Role-Play Cards',c:'Physical Materials',i:'fa-masks-theater'},{id:'wb',n:'Mini-Whiteboards',c:'Physical Materials',i:'fa-chalkboard'},
+{id:'wm',n:'Whiteboard Markers',c:'Physical Materials',i:'fa-pen'},{id:'mp',n:'Manipulatives / Props',c:'Physical Materials',i:'fa-shapes'},
+{id:'ws',n:'Worksheets',c:'Print Materials',i:'fa-file-lines'},{id:'etm',n:'Exit Tickets',c:'Print Materials',i:'fa-ticket'},
+{id:'rb',n:'Rubrics',c:'Print Materials',i:'fa-list-ol'},{id:'pf',n:'Peer Feedback Forms',c:'Print Materials',i:'fa-comments'},
+{id:'tb',n:'Textbook',c:'Print Materials',i:'fa-book'},{id:'wbn',n:'Word Banks',c:'Print Materials',i:'fa-spell-check'},
+{id:'au',n:'Audio / Song',c:'Digital Media',i:'fa-music'},{id:'vd',n:'Video Clip',c:'Digital Media',i:'fa-video'},
+{id:'cl',n:'Curated Links',c:'Digital Media',i:'fa-link'},{id:'is',n:'Interactive Slides',c:'Digital Media',i:'fa-gamepad'},
+{id:'gm',n:'Game Board',c:'Games',i:'fa-chess-board'},{id:'di',n:'Dice / Counters',c:'Games',i:'fa-dice'},
+{id:'tm',n:'Timer',c:'Games',i:'fa-stopwatch'},{id:'tc',n:'Traffic Light Cards',c:'Assessment',i:'fa-traffic-light'},
+{id:'om',n:'Observation Checklist',c:'Assessment',i:'fa-clipboard-check'}
+];
+
+var ACT_TYPES=['Flashcard Game','Song / Chant','TPR Activity','Board Game','Bingo','Worksheet','Role-Play','Information Gap','Think-Pair-Share','Listening Activity','Reading Activity','Writing Activity','Video / Song Activity','Presentation','Quiz / Game Show','Free Practice','Other'];
+var GROUP_OPTS=['Whole Class','Pairs','Small Groups (3-4)','Small Groups (5-6)','Individual','Mixed'];
+var ELTA_ROLES=['Lead the activity','Model the language','Circulate and support','Monitor and help','Manage timing','Take notes on student performance','Co-facilitate with Local Teacher'];
+var LT_ROLES=['Support struggling students','Manage behaviour','Translate if needed','Monitor specific groups','Co-lead the activity','Prepare materials during activity','Help with transitions'];
+var INTER_OPTS=['T to Ss (Whole Class)','T and Ss (Whole Class)','S and S (Pairs)','S and S (Groups)','S (Individual)','Ss to T'];
+var DEF_STAGES=[{s:'Warm-up / Review',t:5},{s:'Presentation / Input',t:10},{s:'Controlled Practice',t:10},{s:'Free Practice',t:10},{s:'Wrap-Up',t:5}];
+
+var selSub='',custSubs=[],selStr={},custStr={},selMat={},custMat=[],procs=[],acts=[];
+
+function initProcs(){procs=[];for(var i=0;i<DEF_STAGES.length;i++)procs.push({id:Date.now()+i,s:DEF_STAGES[i].s,t:DEF_STAGES[i].t,stt:0,ti:'',so:'',str:'',inter:''});}
+function initActs(){acts=[{id:Date.now(),name:'Warm-up',type:'Flashcard Game',time:5,group:'Whole Class',lang:'',outcome:'',eltaR:'',ltR:'',notes:''},{id:Date.now()+1,name:'Main Activity',type:'',time:15,group:'Pairs',lang:'',outcome:'',eltaR:'',ltR:'',notes:''},{id:Date.now()+2,name:'Game',type:'Board Game',time:10,group:'Small Groups (3-4)',lang:'',outcome:'',eltaR:'',ltR:'',notes:''},{id:Date.now()+3,name:'Wrap-up',type:'Worksheet',time:10,group:'Individual',lang:'',outcome:'',eltaR:'',ltR:'',notes:''}];}
+initProcs();initActs();
+
+/* MODE */
+function setMode(m){
+    mode=m;
+    document.body.className=m==='simplified'?'ms':'md';
+    var btns=document.querySelectorAll('#modeT .mb');
+    for(var i=0;i<btns.length;i++)btns[i].classList.toggle('on',btns[i].dataset.m===m);
+    buildNav();updateBadges();
+}
+
+function getSections(){
+    if(mode==='simplified')return[
+        {id:'s-info',l:'Info'},{id:'s-obj',l:'Objectives'},{id:'s-mat',l:'Materials'},
+        {id:'s-proc',l:'Activities'},{id:'s-hw',l:'Homework'},{id:'s-ref',l:'Reflection'}
+    ];
+    return[
+        {id:'s-info',l:'Info'},{id:'s-obj',l:'Objectives'},{id:'s-strat',l:'Strategies'},
+        {id:'s-mat',l:'Materials'},{id:'s-proc',l:'Procedure'},{id:'s-hw',l:'Homework'},{id:'s-ref',l:'Reflection'}
+    ];
+}
+
+function updateBadges(){
+    var sec=getSections();
+    document.getElementById('procT').textContent=mode==='simplified'?'Lesson Activities':'Lesson Procedure';
+    var b=4;for(var i=0;i<sec.length;i++){if(sec[i].id==='s-mat'){b=i+1;break;}}
+    document.getElementById('matB').textContent=b;
+    document.getElementById('procB').textContent=b+1;
+    document.getElementById('hwB').textContent=b+2;
+    document.getElementById('refB').textContent=b+3;
+}
+
+function buildNav(){
+    var sec=getSections(),nav=document.getElementById('navT'),h='';
+    for(var i=0;i<sec.length;i++)h+='<button class="nt'+(i===0?' on':'')+'" data-s="'+sec[i].id+'" onclick="document.getElementById(\''+sec[i].id+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">'+sec[i].l+'</button>';
+    nav.innerHTML=h;
+}
+
+function setupSpy(){
+    var tabs=document.querySelectorAll('#navT .nt'),cards=document.querySelectorAll('.sc');
+    var obs=new IntersectionObserver(function(en){for(var i=0;i<en.length;i++){if(en[i].isIntersecting){for(var j=0;j<tabs.length;j++)tabs[j].classList.toggle('on',tabs[j].dataset.s===en[i].target.id);}}},{rootMargin:'-100px 0px -60% 0px',threshold:0});
+    for(var k=0;k<cards.length;k++)obs.observe(cards[k]);
+}
+function setupReveal(){var obs=new IntersectionObserver(function(en){for(var i=0;i<en.length;i++){if(en[i].isIntersecting){en[i].target.classList.add('v');obs.unobserve(en[i].target);}}},{threshold:.08});var c=document.querySelectorAll('.sc');for(var i=0;i<c.length;i++)obs.observe(c[i]);}
+
+/* SUBJECTS */
+function rSubs(){
+    var c=document.getElementById('subPills'),h='';
+    for(var i=0;i<SUBS.length;i++){var s=SUBS[i];h+='<button class="su'+(selSub===s.id?' on':'')+'" onclick="selSub=\''+A(s.id)+'\';rSubs()">'+E(s.n)+' <span class="sz2">'+E(s.z)+'</span></button>';}
+    for(var j=0;j<custSubs.length;j++){var cs=custSubs[j];h+='<button class="su'+(selSub===cs.id?' on':'')+'" onclick="selSub=\''+A(cs.id)+'\';rSubs()">'+E(cs.n)+'</button>';}
+    h+='<div class="ai"><input id="csi" placeholder="Add..." onkeydown="if(event.key===\'Enter\'){event.preventDefault();addSub()}"><button onclick="addSub()"><i class="fa-solid fa-plus"></i></button></div>';
+    c.innerHTML=h;
+}
+function addSub(){var inp=document.getElementById('csi');if(!inp)return;var v=inp.value.trim();if(!v){toast('Type a subject name','er');return;}var id='cs_'+Date.now();custSubs.push({id:id,n:v});selSub=id;inp.value='';rSubs();toast('Added "'+v+'"','ok');}
+function getSubName(){for(var i=0;i<SUBS.length;i++)if(SUBS[i].id===selSub)return SUBS[i].n+' '+SUBS[i].z;for(var j=0;j<custSubs.length;j++)if(custSubs[j].id===selSub)return custSubs[j].n;return '--';}
+
+/* STRATEGIES */
+function getSCats(){var s={},r=[];for(var i=0;i<STRATS.length;i++)if(!s[STRATS[i].c]){s[STRATS[i].c]=1;r.push(STRATS[i].c);}return r;}
+function allForCat(cat){var l=[];for(var i=0;i<STRATS.length;i++)if(STRATS[i].c===cat)l.push(STRATS[i]);var cu=custStr[cat]||[];for(var j=0;j<cu.length;j++)l.push({id:cu[j].id,n:cu[j].n,i:'fa-star',c:cat,cu:1});return l;}
+function allStrats(){var l=[],cats=getSCats();for(var c=0;c<cats.length;c++){var items=allForCat(cats[c]);for(var i=0;i<items.length;i++)l.push(items[i]);}return l;}
+function cntSel(){var n=0;for(var k in selStr)if(selStr[k])n++;return n;}
+
+function rStrats(){
+    var g=document.getElementById('stratGrid'),cats=getSCats(),h='';
+    for(var c=0;c<cats.length;c++){
+        var cat=cats[c];h+='<div class="ch"><i class="fa-solid fa-circle" style="font-size:5px"></i> '+E(cat)+'</div><div class="cr">';
+        var items=allForCat(cat);
+        for(var i=0;i<items.length;i++){
+            var s=items[i],on=selStr[s.id]?' on':'';
+            var rx=s.cu?'<button class="rx" onclick="event.stopPropagation();delCStr(\''+A(cat)+'\',\''+A(s.id)+'\')"><i class="fa-solid fa-xmark"></i></button>':'';
+            h+='<button class="sp'+on+'" onclick="tglStr(\''+A(s.id)+'\')"><i class="fa-solid '+s.i+'" style="font-size:12px"></i>'+E(s.n)+rx+'</button>';
+        }
+        h+='<div class="ai"><input id="ci_'+I(cat)+'" placeholder="Add..." onkeydown="if(event.key===\'Enter\'){event.preventDefault();addCStr(\''+A(cat)+'\')}"><button onclick="addCStr(\''+A(cat)+'\')"><i class="fa-solid fa-plus"></i></button></div></div>';
+    }
+    g.innerHTML=h;document.getElementById('stCt').textContent=cntSel();
+}
+function tglStr(id){if(selStr[id])delete selStr[id];else selStr[id]=1;rStrats();rProcs();}
+function addCStr(cat){var inp=document.getElementById('ci_'+I(cat));if(!inp)return;var n=inp.value.trim();if(!n){toast('Type a name','er');return;}var id='c_'+I(cat)+'_'+Date.now();if(!custStr[cat])custStr[cat]=[];custStr[cat].push({id:id,n:n});selStr[id]=1;inp.value='';rStrats();rProcs();toast('Added "'+n+'"','ok');}
+function delCStr(cat,id){delete selStr[id];if(custStr[cat])custStr[cat]=custStr[cat].filter(function(s){return s.id!==id;});for(var i=0;i<procs.length;i++)if(procs[i].str===id)procs[i].str='';rStrats();rProcs();}
+
+/* MATERIALS */
+function getMCats(){var s={},r=[];for(var i=0;i<MATS.length;i++)if(!s[MATS[i].c]){s[MATS[i].c]=1;r.push(MATS[i].c);}return r;}
+function cntMat(){var n=0;for(var k in selMat)if(selMat[k])n++;return n;}
+
+function rMats(){
+    var g=document.getElementById('matGrid'),cats=getMCats(),h='';
+    for(var c=0;c<cats.length;c++){
+        var cat=cats[c];h+='<div class="mch"><i class="fa-solid fa-circle" style="font-size:4px"></i> '+E(cat)+'</div><div class="cr">';
+        for(var i=0;i<MATS.length;i++){if(MATS[i].c!==cat)continue;var m=MATS[i];h+='<button class="sp'+(selMat[m.id]?' on':'')+'" onclick="tglMat(\''+A(m.id)+'\')"><i class="fa-solid '+m.i+'" style="font-size:12px"></i>'+E(m.n)+'</button>';}
+        h+='</div>';
+    }
+    if(custMat.length>0){h+='<div class="mch"><i class="fa-solid fa-circle" style="font-size:4px"></i> Custom</div><div class="cr">';for(var j=0;j<custMat.length;j++){var cm=custMat[j];h+='<button class="sp'+(selMat[cm.id]?' on':'')+'" onclick="tglMat(\''+A(cm.id)+'\')"><i class="fa-solid fa-star" style="font-size:12px"></i>'+E(cm.n)+'<button class="rx" onclick="event.stopPropagation();delCMat('+j+')"><i class="fa-solid fa-xmark"></i></button></button>';}h+='</div>';}
+    h+='<div style="margin-top:14px;display:flex;gap:0;max-width:340px"><input class="fi" id="cmi" placeholder="Add material..." style="border-radius:10px 0 0 10px;border-right:0" onkeydown="if(event.key===\'Enter\'){event.preventDefault();addCMat()}"><button class="bp" style="border-radius:0 10px 10px 0;flex-shrink:0" onclick="addCMat()"><i class="fa-solid fa-plus"></i></button></div>';
+    g.innerHTML=h;document.getElementById('matCt').textContent=cntMat();
+}
+function tglMat(id){if(selMat[id])delete selMat[id];else selMat[id]=1;rMats();}
+function addCMat(){var inp=document.getElementById('cmi');if(!inp)return;var n=inp.value.trim();if(!n){toast('Type a name','er');return;}var id='cm_'+Date.now();custMat.push({id:id,n:n});selMat[id]=1;inp.value='';rMats();toast('Added "'+n+'"','ok');}
+function delCMat(i){if(custMat[i])delete selMat[custMat[i].id];custMat.splice(i,1);rMats();}
+
+/* STANDARD PROCEDURE */
+function strOpts(sel){var all=allStrats(),h='';for(var i=0;i<all.length;i++){var s=all[i],se=s.id===sel?' selected':'',dm=cntSel()>0&&!selStr[s.id]?' style="color:var(--m)"':'',pf=s.cu?'[Custom] ':'';h+='<option value="'+A(s.id)+'"'+se+dm+'>'+pf+E(s.n)+'</option>';}return h;}
+
+function rProcs(){
+    var l=document.getElementById('procList'),h='';
+    for(var i=0;i<procs.length;i++){
+        var p=procs[i],so=strOpts(p.str);
+        var io='';for(var j=0;j<INTER_OPTS.length;j++)io+='<option value="'+A(INTER_OPTS[j])+'"'+(p.inter===INTER_OPTS[j]?' selected':'')+'>'+E(INTER_OPTS[j])+'</option>';
+        h+='<div class="pr"><div class="flex items-center justify-between mb-3 flex-wrap gap-2"><div class="flex items-center gap-3"><span class="sn">'+(i+1)+'</span>';
+        h+='<input class="fi" value="'+A(p.s)+'" oninput="procs['+i+'].s=this.value" placeholder="Stage name" style="font-weight:600;max-width:260px"></div>';
+        h+='<div class="flex items-center gap-2 flex-wrap"><div class="flex items-center gap-1"><label class="fl" style="margin:0">Time</label><input class="fi ti" type="number" min="0" max="90" value="'+p.t+'" oninput="procs['+i+'].t=+this.value;updSTT()"><span style="font-size:12px;color:var(--m)">min</span></div>';
+        h+='<div class="flex items-center gap-1" style="margin-left:6px"><label class="fl" style="margin:0;color:var(--p)">STT</label><input class="fi ti" type="number" min="0" max="90" value="'+p.stt+'" oninput="procs['+i+'].stt=+this.value;updSTT()" style="border-color:rgba(44,95,74,.3);color:var(--p)"><span style="font-size:12px;color:var(--p)">min</span></div>';
+        if(procs.length>1)h+='<button class="db" onclick="procs.splice('+i+',1);rProcs();updSTT()"><i class="fa-solid fa-xmark"></i></button>';
+        h+='</div></div>';
+        h+='<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"><div><label class="fl">Teacher Activity (Input)<span class="zh">教師活動</span></label><textarea class="fi" rows="3" oninput="procs['+i+'].ti=this.value" placeholder="What you do and say...">'+E(p.ti)+'</textarea></div>';
+        h+='<div><label class="fl" style="color:var(--p)">Student Activity (Output)<span class="zh">學生活動</span></label><textarea class="fi" rows="3" oninput="procs['+i+'].so=this.value" placeholder="What students do and say..." style="border-color:rgba(44,95,74,.2)">'+E(p.so)+'</textarea></div></div>';
+        h+='<div class="grid grid-cols-1 md:grid-cols-2 gap-3"><div><label class="fl">Strategy<span class="zh">策略</span></label><select class="fi" onchange="procs['+i+'].str=this.value"><option value="">-- Select --</option>'+so+'</select></div>';
+        h+='<div><label class="fl">Interaction<span class="zh">互動</span></label><select class="fi" onchange="procs['+i+'].inter=this.value"><option value="">-- Select --</option>'+io+'</select></div></div></div>';
+    }
+    l.innerHTML=h;
+}
+function addProc(){procs.push({id:Date.now(),s:'',t:5,stt:0,ti:'',so:'',str:'',inter:''});rProcs();var l=document.getElementById('procList');if(l.lastElementChild)l.lastElementChild.scrollIntoView({behavior:'smooth',block:'center'});}
+
+function updSTT(){var tot=0,st=0;for(var i=0;i<procs.length;i++){tot+=(procs[i].t||0);st+=Math.min(procs[i].stt||0,procs[i].t||0);}var pct=tot>0?Math.round(st/tot*100):0;var f=document.getElementById('sttF'),l=document.getElementById('sttL');f.style.width=pct+'%';l.textContent=pct+'%';if(pct<25){f.style.background='var(--d)';l.style.color='var(--d)';}else if(pct<40){f.style.background='var(--w)';l.style.color='var(--w)';}else{f.style.background='var(--ok)';l.style.color='var(--ok)';}}
+
+/* SIMPLIFIED ACTIVITIES */
+function rActs(){
+    var l=document.getElementById('actList'),h='';
+    for(var i=0;i<acts.length;i++){
+        var a=acts[i];
+        var to='<option value="">-- Select --</option>';for(var j=0;j<ACT_TYPES.length;j++)to+='<option value="'+A(ACT_TYPES[j])+'"'+(a.type===ACT_TYPES[j]?' selected':'')+'>'+E(ACT_TYPES[j])+'</option>';
+        var go='<option value="">-- Select --</option>';for(var k=0;k<GROUP_OPTS.length;k++)go+='<option value="'+A(GROUP_OPTS[k])+'"'+(a.group===GROUP_OPTS[k]?' selected':'')+'>'+E(GROUP_OPTS[k])+'</option>';
+        var er='<option value="">-- Select --</option>';for(var m=0;m<ELTA_ROLES.length;m++)er+='<option value="'+A(ELTA_ROLES[m])+'"'+(a.eltaR===ELTA_ROLES[m]?' selected':'')+'>'+E(ELTA_ROLES[m])+'</option>';
+        var lr='<option value="">-- Select --</option>';for(var n=0;n<LT_ROLES.length;n++)lr+='<option value="'+A(LT_ROLES[n])+'"'+(a.ltR===LT_ROLES[n]?' selected':'')+'>'+E(LT_ROLES[n])+'</option>';
+        h+='<div class="pr"><div class="flex items-center justify-between mb-3 flex-wrap gap-2"><div class="flex items-center gap-3"><span class="sn sn-a">'+(i+1)+'</span>';
+        h+='<input class="fi" value="'+A(a.name)+'" oninput="acts['+i+'].name=this.value" placeholder="Activity name" style="font-weight:600;max-width:220px"></div>';
+        h+='<div class="flex items-center gap-2"><div class="flex items-center gap-1"><label class="fl" style="margin:0">Time</label><input class="fi ti" type="number" min="0" max="90" value="'+a.time+'" oninput="acts['+i+'].time=+this.value"><span style="font-size:12px;color:var(--m)">min</span></div>';
+        if(acts.length>1)h+='<button class="db" onclick="acts.splice('+i+',1);rActs()"><i class="fa-solid fa-xmark"></i></button>';
+        h+='</div></div>';
+        h+='<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"><div><label class="fl">Activity Type<span class="zh">活動類型</span></label><select class="fi" onchange="acts['+i+'].type=this.value">'+to+'</select></div>';
+        h+='<div><label class="fl">Grouping<span class="zh">分組方式</span></label><select class="fi" onchange="acts['+i+'].group=this.value">'+go+'</select></div></div>';
+        h+='<div class="mb-3"><label class="fl">Target Language / What to Practice<span class="zh">目標語言 / 練習內容</span></label><textarea class="fi" rows="2" oninput="acts['+i+'].lang=this.value" placeholder="e.g. How\'s the weather? It\'s sunny.">'+E(a.lang)+'</textarea></div>';
+        h+='<div class="mb-3"><label class="fl">Expected Outcome<span class="zh">預期結果</span></label><textarea class="fi" rows="2" oninput="acts['+i+'].outcome=this.value" placeholder="e.g. Students can ask and answer about weather using flashcards.">'+E(a.outcome)+'</textarea></div>';
+        h+='<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"><div><label class="fl">My Role (ELTA)<span class="zh">我的角色</span></label><select class="fi" onchange="acts['+i+'].eltaR=this.value">'+er+'</select></div>';
+        h+='<div><label class="fl">Local Teacher Role<span class="zh">本地教師角色</span></label><select class="fi" onchange="acts['+i+'].ltR=this.value">'+lr+'</select></div></div>';
+        h+='<div><label class="fl">Notes / Details<span class="zh">備註</span></label><textarea class="fi" rows="2" oninput="acts['+i+'].notes=this.value" placeholder="Any extra details...">'+E(a.notes)+'</textarea></div></div>';
+    }
+    l.innerHTML=h;
+}
+function addAct(){acts.push({id:Date.now(),name:'',type:'',time:5,group:'',lang:'',outcome:'',eltaR:'',ltR:'',notes:''});rActs();var l=document.getElementById('actList');if(l.lastElementChild)l.lastElementChild.scrollIntoView({behavior:'smooth',block:'center'});}
+
+/* SAVE / LOAD */
+function gData(){var d={};var f=document.querySelectorAll('[data-f]');for(var i=0;i<f.length;i++)d[f[i].dataset.f]=f[i].value;return d;}
+function sData(d){var f=document.querySelectorAll('[data-f]');for(var i=0;i<f.length;i++)if(d[f[i].dataset.f]!==undefined)f[i].value=d[f[i].dataset.f];}
+
+function saveDraft(){
+    var d=gData();var draft={d:d,mode:mode,selSub:selSub,custSubs:custSubs,selMat:selMat,custMat:custMat,procs:procs,acts:acts,selStr:selStr,custStr:custStr,ts:new Date().toISOString()};
+    try{localStorage.setItem('elta_lp',JSON.stringify(draft));toast('Draft saved','ok');}catch(e){toast('Save failed','er');}
+}
+
+function loadDraft(){
+    var r=localStorage.getItem('elta_lp');if(!r)return false;
+    try{
+        var dr=JSON.parse(r);sData(dr.d||{});mode=dr.mode||'standard';selSub=dr.selSub||'';custSubs=dr.custSubs||[];selMat=dr.selMat||{};custMat=dr.custMat||[];
+        procs=dr.procs||[];if(!procs.length)initProcs();acts=dr.acts||[];if(!acts.length)initActs();selStr=dr.selStr||{};custStr=dr.custStr||{};
+        setMode(mode);rSubs();rMats();rStrats();rProcs();rActs();updSTT();return true;
+    }catch(e){return false;}
+}
+
+function clearAll(){
+    var o=document.createElement('div');o.className='mo op';o.style.zIndex='300';
+    o.innerHTML='<div class="mx" style="max-width:420px"><div style="padding:28px;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:#FDEAEA;color:var(--d);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px"><i class="fa-solid fa-triangle-exclamation"></i></div><h3 style="font-size:18px;margin-bottom:8px">Reset Entire Form?</h3><p style="font-size:14px;color:var(--m);margin-bottom:24px">This will clear everything.</p><div style="display:flex;gap:8px;justify-content:center"><button class="bs2" onclick="this.closest(\'.mo\').remove()">Cancel</button><button class="bp" style="background:var(--d)" onclick="doClear(this)">Reset</button></div></div></div>';
+    o.addEventListener('click',function(e){if(e.target===o)o.remove();});document.body.appendChild(o);
+}
+function doClear(btn){btn.closest('.mo').remove();var f=document.querySelectorAll('[data-f]');for(var i=0;i<f.length;i++)f[i].value='';selSub='';custSubs=[];selStr={};custStr={};selMat={};custMat=[];initProcs();initActs();rSubs();rMats();rStrats();rProcs();rActs();updSTT();try{localStorage.removeItem('elta_lp');}catch(e){}toast('Form reset','in');}
+
+/* EXPORT */
+function genExport(){
+    var d=gData(),t='';
+    t+='===========================================\n  ELTA LESSON PLAN  教學計畫\n===========================================\n\n';
+    t+='-- LESSON INFORMATION  課程資訊 --\n';
+    t+='  ELTA Name:       '+(d.teacherName||'--')+'\n  Local Teacher:   '+(d.coTeacher||'--')+'\n  School:          '+(d.school||'--')+'\n';
+    t+='  Grade:           '+(d.grade||'--')+'  |  Students: '+(d.numStudents||'--')+'\n  Subject:         '+getSubName()+'\n';
+    t+='  Date:            '+(d.date||'--')+'  |  Period: '+(d.period||'--')+'\n  Sessions:        '+(d.sessions||'--')+'\n';
+    t+='  Topic:           '+(d.topic||'--')+'\n  Unit:            '+(d.unit||'--')+'  |  Pages: '+(d.textbook||'--')+'\n\n';
+
+    if(mode==='standard'){
+        t+='-- LEARNING OBJECTIVES  學習目標 --\n';
+        if(d.obj1)t+='  1. '+d.obj1+'\n';if(d.obj2)t+='  2. '+d.obj2+'\n';if(d.obj3)t+='  3. '+d.obj3+'\n';
+        if(!d.obj1&&!d.obj2&&!d.obj3)t+='  (none)\n';
+        t+='  Vocabulary:  '+(d.vocab||'--')+'\n  Grammar:     '+(d.grammar||'--')+'\n\n';
+        t+='-- STRATEGIES  教學策略 --\n';var sn=[];var sa=allStrats();for(var k in selStr){if(!selStr[k])continue;for(var i=0;i<sa.length;i++)if(sa[i].id===k){sn.push(sa[i].n);break;}}t+='  '+(sn.length?sn.join(', '):'None')+'\n\n';
+        t+='-- PROCEDURE  教學流程 --\n---------------------------------------------\n';
+        var tot=0,st=0;for(var pi=0;pi<procs.length;pi++){tot+=(procs[pi].t||0);st+=Math.min(procs[pi].stt||0,procs[pi].t||0);}var pct=tot>0?Math.round(st/tot*100):0;
+        for(var pp=0;pp<procs.length;pp++){var p=procs[pp];t+='  '+(pp+1)+'. '+((p.s||'Untitled'))+'  ('+(p.t||0)+' min | STT: '+(p.stt||0)+' min)\n';t+='     Teacher:   '+(p.ti||'--')+'\n     Students:  '+(p.so||'--')+'\n';var sn2='--';for(var si=0;si<sa.length;si++)if(sa[si].id===p.str){sn2=sa[si].n;break;}t+='     Strategy:  '+sn2+'\n';if(pp<procs.length-1)t+='     .......................................\n';}
+        t+='---------------------------------------------\n  Planned STT: '+pct+'%\n\n';
+    } else {
+        t+='-- OBJECTIVES  學習目標 --\n  '+(d.simpObj||'--')+'\n  Key Sentences: '+(d.simpKeys||'--')+'\n\n';
+        t+='-- ACTIVITIES  活動 --\n---------------------------------------------\n';
+        for(var ai=0;ai<acts.length;ai++){var a=acts[ai];t+='  '+(ai+1)+'. '+((a.name||'Untitled'))+'  ('+(a.time||0)+' min | '+((a.type||'--'))+' | '+((a.group||'--'))+')\n';t+='     Target Language: '+(a.lang||'--')+'\n     Expected Outcome: '+(a.outcome||'--')+'\n';t+='     ELTA Role:       '+(a.eltaR||'--')+'\n     LT Role:         '+(a.ltR||'--')+'\n';if(a.notes)t+='     Notes:           '+a.notes+'\n';if(ai<acts.length-1)t+='     .......................................\n';}
+        t+='---------------------------------------------\n\n';
+    }
+
+    var mn=[];for(var mk in selMat){if(!selMat[mk])continue;var fd=0;for(var mi=0;mi<MATS.length;mi++)if(MATS[mi].id===mk){mn.push(MATS[mi].n);fd=1;break;}if(!fd)for(var ci=0;ci<custMat.length;ci++)if(custMat[ci].id===mk){mn.push(custMat[ci].n);break;}}
+    t+='-- MATERIALS  教學資源 --\n';for(var sm=0;sm<mn.length;sm++)t+='  [x] '+mn[sm]+'\n';if(!mn.length)t+='  (none)\n';if(d.matNotes)t+='  Notes: '+d.matNotes+'\n';t+='\n';
+    t+='-- HOMEWORK  作業 --\n  '+(d.homework||'--')+'\n  Next Lesson: '+(d.transition||'--')+'\n\n';
+
+    if(mode==='standard'){
+        t+='-- REFLECTION  課後反思 --\n  STT: '+(d.actualSTT?d.actualSTT+'%':'--')+'  |  L1: '+(d.l1Use||'--')+'  |  Rating: '+(d.rating||'--')+'\n';
+        t+='  Worked:     '+(d.workedWell||'--')+'\n  Change:     '+(d.needsAdj||'--')+'\n  LT Notes:   '+(d.ltNotes||'--')+'\n  Follow-Up:  '+(d.followUp||'--')+'\n\n';
+    } else {
+        t+='-- REFLECTION  課後反思 --\n  Rating: '+(d.simpRate||'--')+'\n  Notes:  '+(d.simpRef||'--')+'\n  LT Notes: '+(d.simpLTN||'--')+'\n\n';
+    }
+    t+='===========================================\n  '+new Date().toLocaleString('en-TW')+'\n===========================================\n';
+    return t;
+}
+
+function openExp(){document.getElementById('expCon').textContent=genExport();document.getElementById('expModal').classList.add('op');}
+function closeExp(){document.getElementById('expModal').classList.remove('op');}
+function copyExp(){var txt=genExport();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast('Copied!','ok');closeExp();}).catch(function(){fc(txt);});}else fc(txt);}
+function fc(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied!','ok');closeExp();}catch(e){toast('Copy failed','er');}document.body.removeChild(ta);}
+
+/* TOAST */
+function toast(msg,type){type=type||'in';var box=document.getElementById('toastBox'),t=document.createElement('div');t.className='tt '+type;var ic={ok:'fa-circle-check',er:'fa-circle-xmark',in:'fa-circle-info'};t.innerHTML='<i class="fa-solid '+(ic[type]||ic.in)+'"></i>'+E(msg);box.appendChild(t);requestAnimationFrame(function(){requestAnimationFrame(function(){t.classList.add('sh');});});setTimeout(function(){t.classList.remove('sh');setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},400);},3000);}
+
+/* INIT */
+document.addEventListener('DOMContentLoaded',function(){
+    rSubs();rMats();rStrats();rProcs();rActs();updSTT();setupSpy();
+    requestAnimationFrame(function(){setupReveal();});
+    if(loadDraft())toast('Draft restored','in');
+    setInterval(function(){var d=gData();var dr={d:d,mode:mode,selSub:selSub,custSubs:custSubs,selMat:selMat,custMat:custMat,procs:procs,acts:acts,selStr:selStr,custStr:custStr,ts:new Date().toISOString()};try{localStorage.setItem('elta_lp',JSON.stringify(dr));}catch(e){}},60000);
+    document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveDraft();}});
+});
+</script>
+</body>
+</html>
